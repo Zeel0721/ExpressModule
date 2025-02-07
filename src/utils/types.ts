@@ -6,16 +6,16 @@ export interface IUser {
     hashedRt?: string;
 }
 
-export interface ICompany {
-    company: string;
-    products: IProduct[];
-    createdBy?: IUser;
-}
-
 export interface IProduct {
     productsname: string;
     description: string;
     quantity: number;
+    createdBy?: IUser;
+}
+
+export interface ICompany {
+    company: string;
+    products: string[];
     createdBy?: IUser;
 }
 

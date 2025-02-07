@@ -1,13 +1,13 @@
 import express from "express";
-import { IUser } from "../utils/types";
-import User from "../models/user";
+import { ICompany } from "../utils/types";
+import Company from "../models/company";
 
 const router = express.Router();
 
 router.get("/", async (req, res) => {
     try {
-        const userCollection: IUser[] = await User.find().exec();
-        res.send(userCollection);
+        const companyCollection: ICompany[] = await Company.find().exec();
+        res.send(companyCollection);
     } catch (error) {
         res.status(500).send(error);
     }

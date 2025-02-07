@@ -1,13 +1,13 @@
 import express from "express";
-import { IUser } from "../utils/types";
-import User from "../models/user";
+import { IProduct } from "../utils/types";
+import Product from "../models/product";
 
 const router = express.Router();
 
 router.get("/", async (req, res) => {
     try {
-        const userCollection: IUser[] = await User.find().exec();
-        res.send(userCollection);
+        const productCollection: IProduct[] = await Product.find().exec();
+        res.send(productCollection);
     } catch (error) {
         res.status(500).send(error);
     }

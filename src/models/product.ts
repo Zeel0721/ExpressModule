@@ -1,8 +1,9 @@
 import mongoose, { Types } from "mongoose";
-import { IProduct } from "../types";
+import { IProduct } from "../utils/types";
 import User from "./user";
+import { autopopulate } from "../utils/functions";
 
-const productSchema = new mongoose.Schema<IProduct>({
+export const productSchema = new mongoose.Schema<IProduct>({
     productsname: { type: String, required: true },
     description: { type: String, required: true },
     quantity: { type: Number, required: true },
@@ -12,9 +13,7 @@ const productSchema = new mongoose.Schema<IProduct>({
     },
 });
 
-productSchema.pre("find", function () {
-    this.populate("createdBy", "-_id username email");
-});
+autopopulate(productSchema);
 
 const Product = mongoose.model<IProduct>("products", productSchema);
 
