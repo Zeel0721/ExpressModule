@@ -1,21 +1,14 @@
 import express from "express";
 import router from "./router";
-import connectDB from "./dbConnection";
+import mongoose from "mongoose";
 
 const app = express();
 
 app.use(express.json());
-app.use("/", router);
 
-export async function initApp() {
-    try {
-        await connectDB();
-        console.log("Connection to database established successfully");
-    } catch (error) {
-        console.log(
-            "Error connecting to Database check connection string or check Connection function"
-        );
-    }
-}
+mongoose.connect(process.env.DB_CONNECTION + "Inventory");
+console.log("Not called every time");
+
+app.use("/", router);
 
 export default app;

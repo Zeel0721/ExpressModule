@@ -1,14 +1,4 @@
-import { Collection, ObjectId } from "mongodb";
-
-export interface CollectionInterface {
-    userCollection: Collection<User>;
-    companyCollection: Collection<Company>;
-    productCollection: Collection<Product>;
-    orderCollection: Collection<Order>;
-}
-
-export interface User {
-    _id: ObjectId;
+export interface IUser {
     username: string;
     email: string;
     password: string;
@@ -16,28 +6,28 @@ export interface User {
     hashedRt?: string;
 }
 
-export interface Company {
+export interface ICompany {
     company: string;
-    products: Product[];
-    createdBy?: User;
+    products: IProduct[];
+    createdBy?: IUser;
 }
 
-export interface Product {
+export interface IProduct {
     productsname: string;
     description: string;
     quantity: number;
-    createdBy?: User;
+    createdBy?: IUser;
 }
 
-export interface Order {
+export interface IOrder {
     companyname: string;
-    orderdetail: OrderDetail[];
+    orderdetail: IOrderDetail[];
     date: Date;
     invoice?: Blob;
-    createdBy?: User;
+    createdBy?: IUser;
 }
 
-export type OrderDetail = {
+export type IOrderDetail = {
     productname: string;
     quantity: number;
 };
